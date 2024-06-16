@@ -1,7 +1,6 @@
 package com.kafka.paymentservice.controller;
 
 import com.kafka.paymentservice.dto.PaymentMethodDto;
-import com.kafka.paymentservice.dto.ProcessPaymentDto;
 import com.kafka.paymentservice.entity.Payment;
 import com.kafka.paymentservice.entity.PaymentMethod;
 import com.kafka.paymentservice.service.PaymentService;
@@ -18,11 +17,6 @@ public class PaymentController {
     @PostMapping("/methods")
     public PaymentMethod registerPaymentMethod(@RequestBody PaymentMethodDto request) {
         return paymentService.registerPaymentMethod(request.userId, request.paymentMethodType, request.creditCardNumber);
-    }
-
-    @PostMapping("/process-payment")
-    public Payment processPayment(@RequestBody ProcessPaymentDto request) throws Exception {
-        return paymentService.processPayment(request.userId, request.orderId, request.amountKRW, request.paymentMethodId);
     }
 
     @GetMapping("/users/{userId}/first-method")
